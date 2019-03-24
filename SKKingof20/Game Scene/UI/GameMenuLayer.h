@@ -57,6 +57,7 @@ typedef NS_ENUM(NSUInteger, PopoverType) {
 -(void) disablePlaybutton:(BOOL) should_disable;
 -(void) disablePassbutton:(BOOL) should_disable;
 -(void) disableSwapbutton:(BOOL) should_disable;
+-(void) shuffleRecallToggle:(BOOL) should_shuffle;
 
 #pragma mark Score/Popovers for reasons
 

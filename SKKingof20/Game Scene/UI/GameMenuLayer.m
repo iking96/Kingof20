@@ -16,10 +16,17 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
 
 @interface GameMenuLayer()
 
+// Animations
+@property NSMutableArray<SKTexture*>*  buttonAnimationFrames;
+
 // Buttons
 @property CustomKTButton* playButton;
 @property CustomKTButton* passButton;
 @property CustomKTButton* swapButton;
+@property CustomKTButton* moreButton;
+@property CustomKTButton* shuffleButton;
+@property SKLabelNode* shuffleRecallLabel;
+@property CustomKTButton* recallButton;
 @property CustomKTButton* confirmButton;
 @property CustomKTButton* cancelButton;
 @property CustomKTButton* tilesButton;
@@ -30,6 +37,7 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
 @property SKSpriteNode* errorPopover;
 @property SKSpriteNode* persistancePopover; // Set via setter
 @property SKSpriteNode* swapPopover;
+@property SKSpriteNode* gameShader;
 
 @property SKLabelNode* warningText;
 @property SKLabelNode* errorText;
@@ -45,6 +53,9 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     SKAction* _popoverDown;
     SKAction* _popoverUp;
     SKAction* _popoverPop;
+    
+    bool moreActive;
+    bool morePrevPlayToggle;
 }
 
 #pragma mark Node Initilization
@@ -53,6 +64,8 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     self = [super init];
     
     _size = size;
+    _buttonAnimationFrames = [[NSMutableArray alloc] init];
+    moreActive = false;
     
     /**
      * TOP OVERLAY
@@ -142,32 +155,66 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     _playButton.position = CGPointMake(0, -75);
     [_playButton setTouchUpInsideTarget:self action:@selector(playButtonPressed) object:nil];
     
-    // Create Swap Button
-    _swapButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Swap_Active.png" selected:@"Game_Scene_Swap_Active.png" disabled:@"Game_Scene_Swap_Unactive.png"];
-    _swapButton.position = CGPointMake( 210, -75);
-    [_swapButton setTouchUpInsideTarget:self action:@selector(swapButtonPressed) object:nil];
+    // Create More Button
+    _moreButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"more1.png" selected:@"more1.png" disabled:@"more1.png"];
+    _moreButton.position = CGPointMake( -210, -65);
+    [_moreButton setTouchUpInsideTarget:self action:@selector(moreButtonPressed) object:nil];
+    SKLabelNode* moreLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    [moreLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+    [moreLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+    moreLabel.position = CGPointMake( -210, -115);
+    moreLabel.fontSize = 25;
+    moreLabel.text = @"MORE";
     
-    // Create Cancel Button
-    _cancelButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Cancel_Active.png" selected:@"Game_Scene_Cancel_Active.png"];
-    _cancelButton.position = CGPointMake( 210, -75);
-    [_cancelButton setTouchUpInsideTarget:self action:@selector(cancelButtonPressed) object:nil];
-    _cancelButton.hidden = YES;
+    // Create GameScene shader
+    _gameShader = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:_size]; //center Node
+    [_gameShader setAlpha:.25];
+    [_gameShader setZPosition:1];
+    _gameShader.hidden = true;
     
-    // Create Confirm Button
-    _confirmButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Confirm_Active.png" selected:@"Game_Scene_Confirm_Active.png"];
-    _confirmButton.position = CGPointMake( -210, -75);
-    [_confirmButton setTouchUpInsideTarget:self action:@selector(confirmButtonPressed) object:nil];
-    _confirmButton.hidden = YES;
+    // Create Shuffle Button
+    _shuffleButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Shuffle.png" selected:@"Game_Scene_Shuffle.png" disabled:@"Game_Scene_Shuffle.png"];
+    _shuffleButton.position = CGPointMake( 210, -65);
+    [_shuffleButton setTouchUpInsideTarget:self action:@selector(shuffleButtonPressed) object:nil];
+    _shuffleRecallLabel = [SKLabelNode labelNodeWithFontNamed:@"Helvetica"];
+    [_shuffleRecallLabel setVerticalAlignmentMode:SKLabelVerticalAlignmentModeCenter];
+    [_shuffleRecallLabel setHorizontalAlignmentMode:SKLabelHorizontalAlignmentModeCenter];
+    _shuffleRecallLabel.position = CGPointMake( 210, -115);
+    _shuffleRecallLabel.fontSize = 25;
+    _shuffleRecallLabel.text = @"SHUFFLE";
     
-    // Create Pass Button
-    _passButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Pass_Active.png" selected:@"Game_Scene_Pass_Active.png" disabled:@"Game_Scene_Pass_Unactive.png"];
-    _passButton.position = CGPointMake( -210, -75);
-    [_passButton setTouchUpInsideTarget:self action:@selector(passButtonPressed) object:nil];
+    // Create Shuffle Button
+    _recallButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Recall.png" selected:@"Game_Scene_Recall.png" disabled:@"Game_Scene_Recall.png"];
+    _recallButton.position = CGPointMake( 210, -65);
+    [_recallButton setTouchUpInsideTarget:self action:@selector(recallButtonPressed) object:nil];
+    _recallButton.hidden = YES;
     
-    // Create Pass Button
-    _swapPopover = [SKSpriteNode spriteNodeWithImageNamed:@"Game_Scene_Swap_Popup.png"];
-    _swapPopover.anchorPoint = CGPointMake(.5, 1);
-    _swapPopover.position = CGPointMake( 0, 0 );
+//    // Create Swap Button
+//    _swapButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Swap_Active.png" selected:@"Game_Scene_Swap_Active.png" disabled:@"Game_Scene_Swap_Unactive.png"];
+//    _swapButton.position = CGPointMake( 210, -75);
+//    [_swapButton setTouchUpInsideTarget:self action:@selector(swapButtonPressed) object:nil];
+//    
+//    // Create Cancel Button
+//    _cancelButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Cancel_Active.png" selected:@"Game_Scene_Cancel_Active.png"];
+//    _cancelButton.position = CGPointMake( 210, -75);
+//    [_cancelButton setTouchUpInsideTarget:self action:@selector(cancelButtonPressed) object:nil];
+//    _cancelButton.hidden = YES;
+//    
+//    // Create Confirm Button
+//    _confirmButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Confirm_Active.png" selected:@"Game_Scene_Confirm_Active.png"];
+//    _confirmButton.position = CGPointMake( -210, -75);
+//    [_confirmButton setTouchUpInsideTarget:self action:@selector(confirmButtonPressed) object:nil];
+//    _confirmButton.hidden = YES;
+//    
+//    // Create Pass Button
+//    _passButton = [[CustomKTButton alloc] initWithImageNamedNormal:@"Game_Scene_Pass_Active.png" selected:@"Game_Scene_Pass_Active.png" disabled:@"Game_Scene_Pass_Unactive.png"];
+//    _passButton.position = CGPointMake( -210, -75);
+//    [_passButton setTouchUpInsideTarget:self action:@selector(passButtonPressed) object:nil];
+//    
+//    // Create Pass Button
+//    _swapPopover = [SKSpriteNode spriteNodeWithImageNamed:@"Game_Scene_Swap_Popup.png"];
+//    _swapPopover.anchorPoint = CGPointMake(.5, 1);
+//    _swapPopover.position = CGPointMake( 0, 0 );
     
     // Create bottom overlay
     SKSpriteNode* bottom_layover = [SKSpriteNode spriteNodeWithImageNamed:@"Game_Scene_Bottom_Overlay.png"];
@@ -175,13 +222,19 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     
     SKNode* bottomCenterNode = [SKNode node]; //Bottom-Center Node
     bottomCenterNode.position = CGPointMake(0, -(_size.height)/2);
-    [bottomCenterNode addChild:_swapPopover];
+    [bottomCenterNode setZPosition:1];
+//    [bottomCenterNode addChild:_swapPopover];
     [bottomCenterNode addChild:bottom_layover];
     [bottomCenterNode addChild:_playButton];
-    [bottomCenterNode addChild:_swapButton];
-    [bottomCenterNode addChild:_cancelButton];
-    [bottomCenterNode addChild:_confirmButton];
-    [bottomCenterNode addChild:_passButton];
+    [bottomCenterNode addChild:_moreButton];
+    [bottomCenterNode addChild:moreLabel];
+    [bottomCenterNode addChild:_shuffleButton];
+    [bottomCenterNode addChild:_recallButton];
+    [bottomCenterNode addChild:_shuffleRecallLabel];
+//    [bottomCenterNode addChild:_swapButton];
+//    [bottomCenterNode addChild:_cancelButton];
+//    [bottomCenterNode addChild:_confirmButton];
+//    [bottomCenterNode addChild:_passButton];
 
     [bottomCenterNode runAction:[SKAction sequence:@[
                                                   [SKAction moveToY:BOTTOM_CENTER_NODE_RESTING duration:.5]
@@ -201,6 +254,7 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     closeButton.position = CGPointMake( -(tile_distribution.size.width/2) , (tile_distribution.size.height/2) );
     [closeButton setTouchUpInsideTarget:self action:@selector(closeTileDistribution) object:nil];
     
+    // Add collect tile distribution assets
     _distubutionNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:_size]; //center Node
     [_distubutionNode addChild:tile_distribution];
     [_distubutionNode addChild:_tileTotalText];
@@ -209,6 +263,7 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     _distubutionNode.hidden = YES;
     
     // Make Collector Nodes Visible
+    [self addChild:_gameShader];
     [self addChild:topCenterNode];
     [self addChild:bottomCenterNode];
     [self addChild:_distubutionNode];
@@ -241,21 +296,68 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     [_gameScene handlePlayAttempt];
 }
 
--(void) swapButtonPressed {
-    // Tell GameScene to evaluate swap
-    [_gameScene handleSwap];
+-(void) moreButtonPressed {
     
-    // Disable/Enable buttons
-    _swapButton.hidden = YES;
-    _passButton.hidden = YES;
-
-    _confirmButton.hidden = NO;
-    _cancelButton.hidden = NO;
+    [self buildAnimationFramesfromatlasNamed:@"more"];
     
-    // Move popover
-    [_swapPopover runAction:[SKAction moveToY:SWAP_POPOVER_MOVE_DIST duration:.25 ]];
-
+    if ( moreActive ) {
+        // Reverse frames if more is active
+        _buttonAnimationFrames = [[[_buttonAnimationFrames reverseObjectEnumerator] allObjects] mutableCopy];
+        
+        // Remove shader
+        _gameShader.hidden = true;
+        
+        // Enable play button - If applicable
+        [self disablePlaybutton:!morePrevPlayToggle];
+        
+    } else {
+        _gameShader.hidden = false;
+        
+        // Disable play button
+        morePrevPlayToggle = _playButton.isEnabled;
+        [self disablePlaybutton:true];
+    }
+    
+    moreActive = !moreActive;
+    
+    // Make SKAction gif
+    SKAction* repeatGIF = [SKAction animateWithTextures:_buttonAnimationFrames timePerFrame:0.05 resize:true restore:false];
+    
+    [_moreButton setNormTexture:_buttonAnimationFrames.lastObject];
+    [_moreButton runAction:repeatGIF];
+    
 }
+
+-(void) shuffleButtonPressed {
+    // Tell GameScene to shuffle tiles
+    [_gameScene handleShuffle];
+}
+
+-(void) recallButtonPressed {
+    // Tell GameScene to shuffle tiles
+    [_gameScene handleRecall];
+    
+    // Force play to be disabled if more is active
+    if ( moreActive ) {
+        morePrevPlayToggle = false;
+    }
+}
+
+//-(void) swapButtonPressed {
+//    // Tell GameScene to evaluate swap
+//    [_gameScene handleSwap];
+//
+//    // Disable/Enable buttons
+//    _swapButton.hidden = YES;
+//    _passButton.hidden = YES;
+//
+//    _confirmButton.hidden = NO;
+//    _cancelButton.hidden = NO;
+//
+//    // Move popover
+//    [_swapPopover runAction:[SKAction moveToY:SWAP_POPOVER_MOVE_DIST duration:.25 ]];
+//
+//}
 
 -(void) cancelButtonPressed {
     // Tell GameScene to evaluate swap
@@ -313,6 +415,9 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     _passButton.userInteractionEnabled = !should_disable;
     _swapButton.userInteractionEnabled = !should_disable;
     _tilesButton.userInteractionEnabled = !should_disable;
+    _moreButton.userInteractionEnabled = !should_disable;
+    _shuffleButton.userInteractionEnabled = !should_disable;
+    _recallButton.userInteractionEnabled = !should_disable;
 
 }
 
@@ -335,6 +440,20 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
     // Disable/Enable action buttons
     _passButton.isEnabled = !should_disable;
     
+}
+
+-(void) shuffleRecallToggle:(BOOL) should_shuffle {
+    
+    // If "should_shuffle"; do that
+    _shuffleButton.hidden = !should_shuffle;
+    if (should_shuffle){
+     _shuffleRecallLabel.text = @"SHUFFLE";
+    }
+    
+    _recallButton.hidden = should_shuffle;
+    if (!should_shuffle) {
+        _shuffleRecallLabel.text = @"RECALL";
+    }
 }
 
 #pragma -
@@ -454,6 +573,18 @@ static const int BOTTOM_CENTER_NODE_RESTING = -425;
 
 -(void) animateHeader:(BOOL)myTurn {
     [_headerNode animateTurn:myTurn];
+}
+
+-(void) buildAnimationFramesfromatlasNamed:(NSString *)baseName {
+    SKTextureAtlas* AnimatedAtlas = [SKTextureAtlas atlasNamed:baseName];
+    NSMutableArray<SKTexture*>* animationFrames = [[NSMutableArray alloc] init];
+    
+    NSUInteger numImages = AnimatedAtlas.textureNames.count;
+    for ( int i = 1; i <=numImages; i++ ) {
+        NSString * textureName = [NSString stringWithFormat:@"%@%d",baseName,i];
+        [animationFrames addObject:[AnimatedAtlas textureNamed:textureName]];
+    }
+    _buttonAnimationFrames = animationFrames;
 }
 
 @end

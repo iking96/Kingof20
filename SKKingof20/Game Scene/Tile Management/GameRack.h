@@ -41,6 +41,11 @@
 -(void)refillRack;
 
 /**
+ * All rack spaces are shuffled
+ */
+-(void)shuffleRack;
+
+/**
  * Return rack as array
  */
 -(NSMutableArray*) returnCurrentRack;

@@ -19,10 +19,11 @@
 		7B1BE0A820181F260095CE34 /* RulesScene-iphone.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7B1BE0A720181F260095CE34 /* RulesScene-iphone.sks */; };
 		7B1BE0AB20181FED0095CE34 /* RulesScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1BE0AA20181FED0095CE34 /* RulesScene.m */; };
 		7B279035200F0A6D00CBD1A7 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B279034200F0A6D00CBD1A7 /* CustomScrollView.m */; };
-		7B3853C5213EB8A400AA0495 /* MoreIcon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7B3853C4213EB8A400AA0495 /* MoreIcon.atlas */; };
+		7B3853C5213EB8A400AA0495 /* more.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7B3853C4213EB8A400AA0495 /* more.atlas */; };
 		7B52D6A9201AE976004C9046 /* GameScene-iphone.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7B52D6A8201AE976004C9046 /* GameScene-iphone.sks */; };
 		7B52D6AC201AE99D004C9046 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B52D6AB201AE99D004C9046 /* GameScene.m */; };
 		7B5827BC205B61CF0045FD84 /* GameMenuHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B5827BB205B61CF0045FD84 /* GameMenuHeader.m */; };
+		7B69B1062142FAE100CFD742 /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B69B1052142FAE100CFD742 /* NSMutableArray+Shuffling.m */; };
 		7B6AF4612014E0F90054D680 /* CustomKTButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AF4602014E0F90054D680 /* CustomKTButton.m */; };
 		7B958E4E200DAA4900CFA3FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B958E4D200DAA4900CFA3FA /* AppDelegate.m */; };
 		7B958E50200DAA4900CFA3FA /* MainScene-iphone.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7B958E4F200DAA4900CFA3FA /* MainScene-iphone.sks */; };
@@ -92,13 +93,15 @@
 		7B1BE0AA20181FED0095CE34 /* RulesScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RulesScene.m; sourceTree = "<group>"; };
 		7B279034200F0A6D00CBD1A7 /* CustomScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
 		7B279036200F0A7A00CBD1A7 /* CustomScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
-		7B3853C4213EB8A400AA0495 /* MoreIcon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = MoreIcon.atlas; sourceTree = "<group>"; };
+		7B3853C4213EB8A400AA0495 /* more.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = more.atlas; sourceTree = "<group>"; };
 		7B4FB812205ED73800EA4E1F /* MoveType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoveType.h; sourceTree = "<group>"; };
 		7B52D6A8201AE976004C9046 /* GameScene-iphone.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameScene-iphone.sks"; sourceTree = "<group>"; };
 		7B52D6AA201AE992004C9046 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		7B52D6AB201AE99D004C9046 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameScene.m; path = "SKKingof20/Game Scene/GameScene.m"; sourceTree = SOURCE_ROOT; };
 		7B5827B7205B61AE0045FD84 /* GameMenuHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMenuHeader.h; sourceTree = "<group>"; };
 		7B5827BB205B61CF0045FD84 /* GameMenuHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameMenuHeader.m; sourceTree = "<group>"; };
+		7B69B1042142FA9300CFD742 /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
+		7B69B1052142FAE100CFD742 /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 		7B6AF45C2014E0AD0054D680 /* CustomKTButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomKTButton.h; sourceTree = "<group>"; };
 		7B6AF4602014E0F90054D680 /* CustomKTButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomKTButton.m; sourceTree = "<group>"; };
 		7B958E49200DAA4900CFA3FA /* SKKingof20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKKingof20.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +134,7 @@
 		7BA4C12A2104F44E00907843 /* GameScene-ipad.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "GameScene-ipad.sks"; sourceTree = "<group>"; };
 		7BD5E291203D1DAD000469D4 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		7BD5E292203D1DAD000469D4 /* MultiplayerNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiplayerNetworking.h; sourceTree = "<group>"; };
-		7BD5E293203D1DAD000469D4 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
+		7BD5E293203D1DAD000469D4 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		7BD5E294203D1DAD000469D4 /* MultiplayerNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiplayerNetworking.m; sourceTree = "<group>"; };
 		7BD5E298203D28F8000469D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		7BD5E29A203D2971000469D4 /* SKKingof20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SKKingof20.entitlements; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				7B958E57200DAA4900CFA3FA /* SceneOrganizerViewController.m */,
 				7B13FA862099547D0008FB68 /* GeneralPopover.h */,
 				7B13FA872099548E0008FB68 /* GeneralPopover.m */,
+				7B69B1042142FA9300CFD742 /* NSMutableArray+Shuffling.h */,
+				7B69B1052142FAE100CFD742 /* NSMutableArray+Shuffling.m */,
 			);
 			path = "Over-Arching";
 			sourceTree = "<group>";
@@ -294,7 +299,7 @@
 				7BD5E29A203D2971000469D4 /* SKKingof20.entitlements */,
 				7BF68212201EB8BB007CE913 /* Definition Files */,
 				7B958E59200DAA4900CFA3FA /* Main.storyboard */,
-				7B3853C4213EB8A400AA0495 /* MoreIcon.atlas */,
+				7B3853C4213EB8A400AA0495 /* more.atlas */,
 				7B958E5C200DAA4900CFA3FA /* Assets.xcassets */,
 				7B958E5E200DAA4900CFA3FA /* LaunchScreen.storyboard */,
 				7B958E61200DAA4900CFA3FA /* Info.plist */,
@@ -520,7 +525,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B3853C5213EB8A400AA0495 /* MoreIcon.atlas in Resources */,
+				7B3853C5213EB8A400AA0495 /* more.atlas in Resources */,
 				7B958E5B200DAA4900CFA3FA /* Main.storyboard in Resources */,
 				7B958E50200DAA4900CFA3FA /* MainScene-iphone.sks in Resources */,
 				7B1BE0A820181F260095CE34 /* RulesScene-iphone.sks in Resources */,
@@ -575,6 +580,7 @@
 				7BA1AC7C207DABDB00213097 /* NSDate+Helper.m in Sources */,
 				7B046CB32021752C007FFFB1 /* GameBoardArray.m in Sources */,
 				7B52D6AC201AE99D004C9046 /* GameScene.m in Sources */,
+				7B69B1062142FAE100CFD742 /* NSMutableArray+Shuffling.m in Sources */,
 				7B046CB6202175BF007FFFB1 /* MulticastDelegate.m in Sources */,
 				7BF6820C201E6A14007CE913 /* GameMenuLayer.m in Sources */,
 				7B046CBC20217686007FFFB1 /* ScoreManager.m in Sources */,

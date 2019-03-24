@@ -35,6 +35,10 @@
 //Pass Action
 -(void)handlePass;
 
+//Shuffle Actions
+-(void)handleShuffle;
+-(void)handleRecall;
+
 //Swap Actions
 -(void)handleSwap;
 -(void)handleSwapCancel;

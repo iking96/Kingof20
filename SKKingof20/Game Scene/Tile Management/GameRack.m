@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameRack.h"
+#import "NSMutableArray+Shuffling.h"
 
 static const NSInteger TILE_AMOUNT = 7;
 static const float RACK_WIDTH = 520;
@@ -54,7 +55,6 @@ static const float RACK_WIDTH = 520;
         // Operation found
         if ( currentSquare.value >= BoardCellStatePlus )
             operationSet = YES;
-        
     }
     
     // Ensure first rack always has operation
@@ -85,7 +85,7 @@ static const float RACK_WIDTH = 520;
 -(RackSquare*)emptyRackSquare {
     
     // Return first empty rack square
-    for ( RackSquare* currentSquare in rackSquares) {
+    for ( RackSquare* currentSquare in rackSquares ) {
         if ( [currentSquare isEmpty] ) {
             return currentSquare;
         }
@@ -158,6 +158,21 @@ static const float RACK_WIDTH = 520;
     for (RackSquare* tile in self.children){
         tile.swapping = NO;
         tile.selected = NO;
+    }
+}
+
+#pragma mark Shuffle
+-(void)shuffleRack {
+    // Collect rack values and re-distribute them
+    NSMutableArray* rack = [[NSMutableArray alloc] init];
+    for ( int i = 0; i < rackSquares.count; i++ ){
+        RackSquare* tile = rackSquares[i];
+        [rack addObject:[NSNumber numberWithInteger:tile.value]];
+    }
+    [rack shuffle];
+    for ( int i = 0; i < rackSquares.count; i++ ){
+        RackSquare* tile = rackSquares[i];
+        tile.value = [rack[i] integerValue];
     }
 }
 

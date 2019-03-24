@@ -99,7 +99,7 @@ static const NSInteger END_WIDTH = 1850;
     [self addChild:_gameRack];
     _gameRack.availableTiles = _tileCollection;
     _gameRack.gameScene = self;
-    [_gameRack setZPosition:2]; // Above board and UI
+    [_gameRack setZPosition:1]; // Above board and UI
     
     _tileIsMoving = NO;
     
@@ -323,6 +323,23 @@ static const NSInteger END_WIDTH = 1850;
     return YES;
 }
 
+-(void) handleShuffle {
+    
+    // Clear to rack
+    [_gameState clearTempBoardToRack];
+    
+    // Shuffle rack
+    [_gameRack shuffleRack];
+    
+}
+
+-(void) handleRecall {
+    
+    // Clear to rack
+    [_gameState clearTempBoardToRack];
+    
+}
+
 -(NSUInteger) requestAvailableTileCount {
     return [_tileCollection countOfAvailableTiles];
 }
@@ -425,11 +442,14 @@ static bool gameOverPresented;
 
 -(void)gameStateTempEmpty:(BOOL)isEmpty {
     
-    // Don't enable play is it is not our turn
+    // Don't enable play if it is not our turn
     if ( isEmpty || _myTurn) {
         // Disable play button if temp is empty
         [_gameMenuLayer disablePlaybutton:isEmpty];
     }
+    
+    // Shuffle is Recall if temp not empty
+    [_gameMenuLayer shuffleRecallToggle:isEmpty];
     
 }
 

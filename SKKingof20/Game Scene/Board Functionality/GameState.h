@@ -14,7 +14,7 @@
 #import "GameScene.h"
 
 @class GameRack;
-@interface GameState : NSObject// no longer needed <NSCopying>
+@interface GameState : NSObject // no longer needed <NSCopying>
 
 #pragma mark External Connection
 
