@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */; };
+		7B6EB8C325956C9A003B4326 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6EB8C225956C99003B4326 /* SignInRequest.swift */; };
+		7B6EB8C82595CBD7003B4326 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6EB8C72595CBD6003B4326 /* URLConstants.swift */; };
+		7B7AABCE25576A1700C7CB4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AABCD25576A1700C7CB4B /* User.swift */; };
+		7B7AABD725576AB100C7CB4B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AABD625576AB100C7CB4B /* UserController.swift */; };
+		7BACD2D12551C81F00F8C345 /* WebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BACD2D02551C81F00F8C345 /* WebRequest.swift */; };
 		7BD556E025462B0D0012BA20 /* Kof20App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD556DF25462B0D0012BA20 /* Kof20App.swift */; };
-		7BD556E225462B0D0012BA20 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD556E125462B0D0012BA20 /* ContentView.swift */; };
+		7BD556E225462B0D0012BA20 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD556E125462B0D0012BA20 /* MainMenuView.swift */; };
 		7BD556E425462B100012BA20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD556E325462B100012BA20 /* Assets.xcassets */; };
 		7BD556E725462B100012BA20 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD556E625462B100012BA20 /* Preview Assets.xcassets */; };
 		7BD556F225462B100012BA20 /* Kof20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD556F125462B100012BA20 /* Kof20Tests.swift */; };
 		7BD556FD25462B100012BA20 /* Kof20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD556FC25462B100012BA20 /* Kof20UITests.swift */; };
+		7BD557522546301B0012BA20 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD557512546301B0012BA20 /* ColorExtensions.swift */; };
+		7BD5575B2546A3820012BA20 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD5575A2546A3820012BA20 /* ActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestTest.swift; sourceTree = "<group>"; };
+		7B6EB8C225956C99003B4326 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
+		7B6EB8C72595CBD6003B4326 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
+		7B7AABCD25576A1700C7CB4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7B7AABD625576AB100C7CB4B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		7BACD2D02551C81F00F8C345 /* WebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRequest.swift; sourceTree = "<group>"; };
 		7BD556DC25462B0D0012BA20 /* Kof20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kof20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD556DF25462B0D0012BA20 /* Kof20App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kof20App.swift; sourceTree = "<group>"; };
-		7BD556E125462B0D0012BA20 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7BD556E125462B0D0012BA20 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		7BD556E325462B100012BA20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BD556E625462B100012BA20 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7BD556E825462B100012BA20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +59,8 @@
 		7BD556F825462B100012BA20 /* Kof20UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Kof20UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD556FC25462B100012BA20 /* Kof20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kof20UITests.swift; sourceTree = "<group>"; };
 		7BD556FE25462B100012BA20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BD557512546301B0012BA20 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		7BD5575A2546A3820012BA20 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B49E23E25F74E34002D2873 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7B7AABCC25576A0500C7CB4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B7AABD525576A8200C7CB4B /* Model Controllers */,
+				7B7AABCD25576A1700C7CB4B /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B7AABD525576A8200C7CB4B /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7B7AABD625576AB100C7CB4B /* UserController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		7BACD2CF2551C80B00F8C345 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7BACD2D02551C81F00F8C345 /* WebRequest.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7BACD2DB2551DAE800F8C345 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7B6EB8C225956C99003B4326 /* SignInRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7BB70CB32595CD8B00824082 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				7B6EB8C72595CBD6003B4326 /* URLConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		7BD556D325462B0D0012BA20 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +160,14 @@
 		7BD556DE25462B0D0012BA20 /* Kof20 */ = {
 			isa = PBXGroup;
 			children = (
+				7BB70CB32595CD8B00824082 /* Constants */,
+				7B7AABCC25576A0500C7CB4B /* Models */,
+				7BACD2DB2551DAE800F8C345 /* Networking */,
+				7BACD2CF2551C80B00F8C345 /* Utilities */,
+				7BD557592546A33B0012BA20 /* Widgets */,
+				7BD5574F25462FCC0012BA20 /* Extensions */,
 				7BD556DF25462B0D0012BA20 /* Kof20App.swift */,
-				7BD556E125462B0D0012BA20 /* ContentView.swift */,
+				7BD556E125462B0D0012BA20 /* MainMenuView.swift */,
 				7BD556E325462B100012BA20 /* Assets.xcassets */,
 				7BD556E825462B100012BA20 /* Info.plist */,
 				7BD556E525462B100012BA20 /* Preview Content */,
@@ -115,6 +186,7 @@
 		7BD556F025462B100012BA20 /* Kof20Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7B49E23E25F74E34002D2873 /* Networking */,
 				7BD556F125462B100012BA20 /* Kof20Tests.swift */,
 				7BD556F325462B100012BA20 /* Info.plist */,
 			);
@@ -128,6 +200,22 @@
 				7BD556FE25462B100012BA20 /* Info.plist */,
 			);
 			path = Kof20UITests;
+			sourceTree = "<group>";
+		};
+		7BD5574F25462FCC0012BA20 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7BD557512546301B0012BA20 /* ColorExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7BD557592546A33B0012BA20 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				7BD5575A2546A3820012BA20 /* ActionButton.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +347,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BD556E225462B0D0012BA20 /* ContentView.swift in Sources */,
+				7BACD2D12551C81F00F8C345 /* WebRequest.swift in Sources */,
+				7B7AABD725576AB100C7CB4B /* UserController.swift in Sources */,
+				7B6EB8C82595CBD7003B4326 /* URLConstants.swift in Sources */,
+				7BD556E225462B0D0012BA20 /* MainMenuView.swift in Sources */,
 				7BD556E025462B0D0012BA20 /* Kof20App.swift in Sources */,
+				7B6EB8C325956C9A003B4326 /* SignInRequest.swift in Sources */,
+				7BD557522546301B0012BA20 /* ColorExtensions.swift in Sources */,
+				7B7AABCE25576A1700C7CB4B /* User.swift in Sources */,
+				7BD5575B2546A3820012BA20 /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BD556F225462B100012BA20 /* Kof20Tests.swift in Sources */,
+				7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
