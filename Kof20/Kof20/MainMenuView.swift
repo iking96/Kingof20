@@ -18,9 +18,9 @@ struct MainMenuView: View {
                 Color.mainHeaderBackground
                 VStack {
                     TextField("username", text: $username).padding()
-                        .background(Color(.white)).autocapitalization(.none)
+                        .background(Color(.white)).autocapitalization(.none).foregroundColor(.black)
                     TextField("password", text: $password).padding()
-                        .background(Color(.white)).autocapitalization(.none)
+                        .background(Color(.white)).autocapitalization(.none).foregroundColor(.black)
                     
                     ActionButton(title: "Sign In", action: {
                         userController.signInUser(
