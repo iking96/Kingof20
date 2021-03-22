@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */; };
+		7B5BF42C26089148002E3E4F /* MockWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5BF42B26089147002E3E4F /* MockWebRequest.swift */; };
 		7B6EB8C325956C9A003B4326 /* SignInRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6EB8C225956C99003B4326 /* SignInRequest.swift */; };
 		7B6EB8C82595CBD7003B4326 /* URLConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6EB8C72595CBD6003B4326 /* URLConstants.swift */; };
 		7B7AABCE25576A1700C7CB4B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7AABCD25576A1700C7CB4B /* User.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestTest.swift; sourceTree = "<group>"; };
+		7B5BF42B26089147002E3E4F /* MockWebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebRequest.swift; sourceTree = "<group>"; };
 		7B6EB8C225956C99003B4326 /* SignInRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequest.swift; sourceTree = "<group>"; };
 		7B6EB8C72595CBD6003B4326 /* URLConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConstants.swift; sourceTree = "<group>"; };
 		7B7AABCD25576A1700C7CB4B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -94,6 +96,14 @@
 				7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		7B5BF42A2608912D002E3E4F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7B5BF42B26089147002E3E4F /* MockWebRequest.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		7B7AABCC25576A0500C7CB4B /* Models */ = {
@@ -186,6 +196,7 @@
 		7BD556F025462B100012BA20 /* Kof20Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7B5BF42A2608912D002E3E4F /* Helpers */,
 				7B49E23E25F74E34002D2873 /* Networking */,
 				7BD556F125462B100012BA20 /* Kof20Tests.swift */,
 				7BD556F325462B100012BA20 /* Info.plist */,
@@ -363,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B5BF42C26089148002E3E4F /* MockWebRequest.swift in Sources */,
 				7BD556F225462B100012BA20 /* Kof20Tests.swift in Sources */,
 				7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */,
 			);
