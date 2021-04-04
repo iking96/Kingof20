@@ -11,7 +11,9 @@ import SwiftUI
 struct Kof20App: App {
     var body: some Scene {
         WindowGroup {
-            MainMenuView()
+            NavigationView{
+                MainMenuView()
+            }
         }
     }
 }
