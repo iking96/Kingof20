@@ -7,33 +7,42 @@
 
 import SwiftUI
 
+class MainMenuViewController: ObservableObject, UserControllerObserver {
+    @Published var isSignedIn: Bool? = nil
+    private let userController: UserController
+
+    init(userController: UserController) {
+        self.userController = userController
+        userController.addObserver(self)
+    }
+    
+    func render(_ controller: UserController) {
+        withAnimation {
+            isSignedIn = controller.isSignedIn()
+        }
+    }
+}
+
 struct MainMenuView: View {
-    @StateObject var userController: UserController = UserController()
-    @State private var username = ""
-    @State private var password = ""
+    private var userController: UserController
+    @StateObject var viewController: MainMenuViewController
+
+    init() {
+        let initController = UserController()
+        userController = initController
+        _viewController = StateObject(wrappedValue: MainMenuViewController(userController: initController))
+    }
     
     var body: some View {
-        VStack {
-            ZStack {
-                Color.mainHeaderBackground
-                VStack {
-                    TextField("username", text: $username).padding()
-                        .background(Color(.white)).autocapitalization(.none).foregroundColor(.black)
-                    TextField("password", text: $password).padding()
-                        .background(Color(.white)).autocapitalization(.none).foregroundColor(.black)
-                    
-                    ActionButton(title: "Sign In", action: {
-                        userController.signInUser(
-                            username: username,
-                            password: password
-                        )
-                    })
-                    
-                    Text("Your access token: \(userController.accessToken() ?? "")")
-                    Text("Resultant Error: \(userController.error as? SignInRequestError == SignInRequestError.notFound ? "error" : "")")
-                }.padding()
+        ZStack {
+            if viewController.isSignedIn == nil {
+                Text("Loading ...")
+            } else if viewController.isSignedIn! {
+                SignOutView(userController: userController)
+            } else {
+                SignInView(userController: userController)
             }
-        }.ignoresSafeArea()
+        }
     }
 }
 
