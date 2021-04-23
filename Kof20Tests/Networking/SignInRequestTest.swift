@@ -28,8 +28,18 @@ class SignInRequestTests: XCTestCase {
         let data = try! encoder.encode(SignInResponse(accessToken: "1234"))
         
         webRequest.dataResponseDic = ["http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password" : data]
+        
+        let callback_expectation = expectation(description: "SignInRequest#index evalutes callback")
+
         signInRequest.signIn(username: "john", password: "doe") { (result) in
             XCTAssert(result == .success(SignInResponse(accessToken: "1234")))
+            callback_expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 1) { error in
+          if let error = error {
+            XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+          }
         }
     }
 
