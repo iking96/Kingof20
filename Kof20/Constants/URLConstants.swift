@@ -24,7 +24,10 @@ struct APPURL {
 
     private  static let Domain = Domains.Dev
     private  static let Route = Routes.Api
-    private  static let BaseURL = Domain + Route
+    
+    static var BaseURL: String {
+        return Domain + Route
+    }
     
     static var LoginURL: String {
         return Domain  + "/oauth/token"
