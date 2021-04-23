@@ -11,17 +11,17 @@ protocol URLSessionDataTaskProtocol { func resume() }
 extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
 protocol WebRequestProtocol {
-    func setHeader(value: String, key: String) -> WebRequestProtocol
+    func setHeader(key: String, value: String) -> WebRequestProtocol
     func setBody(data: Data) -> WebRequestProtocol
     func send(url: String, method: String, handler: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTaskProtocol
 }
 
 class WebRequest : WebRequestProtocol {
-    var headers: [(value: String, key: String)] = []
+    var headers: [(key: String, value: String)] = []
     var data: Data? = nil
     
-    func setHeader(value: String, key: String) -> WebRequestProtocol {
-        self.headers.append((value: value, key: key))
+    func setHeader(key: String, value: String) -> WebRequestProtocol {
+        self.headers.append((key: key, value: value))
         return self
     }
     
@@ -34,7 +34,11 @@ class WebRequest : WebRequestProtocol {
         var request = URLRequest(url: URL(string: url)!)
         request.httpBody = data
         request.httpMethod = method
-         
+        
+        for (key, value) in headers {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+        
         let task = URLSession
             .shared
             .dataTask(with: request) { data, _, error in
