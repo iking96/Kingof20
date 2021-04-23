@@ -38,7 +38,7 @@ struct MainMenuView: View {
             if viewController.isSignedIn == nil {
                 Text("Loading ...")
             } else if viewController.isSignedIn! {
-                SignOutView(userController: userController)
+                GamesView(userController: userController)
             } else {
                 SignInView(userController: userController)
             }

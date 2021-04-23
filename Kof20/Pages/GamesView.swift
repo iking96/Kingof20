@@ -7,27 +7,33 @@
 
 import SwiftUI
 
-struct SignOutView: View {
+struct GamesView: View {
     @StateObject var userController: UserController = UserController()
-    
+    @State private var gameId: Int? = nil
+
     var body: some View {
         VStack {
             ZStack {
                 Color.mainHeaderBackground
                 VStack {
-                    ActionButton(title: "Sign Out", action: {
-                        userController.signOutUser()
-                    })
-                    
-                    Text("Resultant Error: \(userController.error as? SignInRequestError == SignInRequestError.notFound ? "error" : "")")
+                    Text("Games")
+                    Text("Fetched game id: \(gameId ?? -1)")
                 }.padding()
             }
         }.ignoresSafeArea()
+        .onAppear() {
+            GameRequest().index(accessToken: userController.accessToken()!) { (result) in
+                switch result {
+                case .success(let response): do { gameId = response[0].id}
+                case .failure( _): do {}
+                }
+            }
+        }
     }
 }
 
-struct SignOutView_Previews: PreviewProvider {
+struct GamesView_Previews: PreviewProvider {
     static var previews: some View {
-        SignOutView()
+        GamesView()
     }
 }

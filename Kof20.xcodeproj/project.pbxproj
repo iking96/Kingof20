@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B39FD19261910B300B0614D /* SignOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39FD18261910B300B0614D /* SignOutView.swift */; };
+		7B39FD27261A55BD00B0614D /* GameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39FD26261A55BD00B0614D /* GameRequest.swift */; };
+		7B39FD2C261A582600B0614D /* GamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39FD2B261A582600B0614D /* GamesView.swift */; };
+		7B39FD372623728500B0614D /* GameRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39FD362623728500B0614D /* GameRequestTest.swift */; };
 		7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */; };
 		7B589F192611AF6700AC027C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B589F182611AF6700AC027C /* SignInView.swift */; };
 		7B5BF42C26089148002E3E4F /* MockWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5BF42B26089147002E3E4F /* MockWebRequest.swift */; };
@@ -45,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		7B39FD18261910B300B0614D /* SignOutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignOutView.swift; sourceTree = "<group>"; };
+		7B39FD26261A55BD00B0614D /* GameRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRequest.swift; sourceTree = "<group>"; };
+		7B39FD2B261A582600B0614D /* GamesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesView.swift; sourceTree = "<group>"; };
+		7B39FD362623728500B0614D /* GameRequestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameRequestTest.swift; sourceTree = "<group>"; };
 		7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRequestTest.swift; sourceTree = "<group>"; };
 		7B589F182611AF6700AC027C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7B5BF42B26089147002E3E4F /* MockWebRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWebRequest.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				7B49E24525F74FBB002D2873 /* SignInRequestTest.swift */,
+				7B39FD362623728500B0614D /* GameRequestTest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -107,6 +114,7 @@
 			children = (
 				7B589F182611AF6700AC027C /* SignInView.swift */,
 				7B39FD18261910B300B0614D /* SignOutView.swift */,
+				7B39FD2B261A582600B0614D /* GamesView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -148,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				7B6EB8C225956C99003B4326 /* SignInRequest.swift */,
+				7B39FD26261A55BD00B0614D /* GameRequest.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -374,7 +383,9 @@
 			files = (
 				7BACD2D12551C81F00F8C345 /* WebRequest.swift in Sources */,
 				7B7AABD725576AB100C7CB4B /* UserController.swift in Sources */,
+				7B39FD2C261A582600B0614D /* GamesView.swift in Sources */,
 				7B6EB8C82595CBD7003B4326 /* URLConstants.swift in Sources */,
+				7B39FD27261A55BD00B0614D /* GameRequest.swift in Sources */,
 				7BD556E225462B0D0012BA20 /* MainMenuView.swift in Sources */,
 				7B589F192611AF6700AC027C /* SignInView.swift in Sources */,
 				7BD556E025462B0D0012BA20 /* Kof20App.swift in Sources */,
@@ -393,6 +404,7 @@
 				7B5BF42C26089148002E3E4F /* MockWebRequest.swift in Sources */,
 				7BD556F225462B100012BA20 /* Kof20Tests.swift in Sources */,
 				7B49E24625F74FBB002D2873 /* SignInRequestTest.swift in Sources */,
+				7B39FD372623728500B0614D /* GameRequestTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
