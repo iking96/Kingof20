@@ -8,57 +8,46 @@
 import XCTest
 @testable import Kof20
 
-class SignInRequestTests: XCTestCase {
-    var signInRequest: SignInRequest!
+class GameRequestTests: XCTestCase {
+    var gameRequest: GameRequest!
     let webRequest = MockWebRequest()
     
     override func setUp() {
         super.setUp()
-        signInRequest = SignInRequest(webRequest: webRequest)
+        gameRequest = GameRequest(webRequest: webRequest)
     }
 
-    func test_basic_sign_in() {
-        signInRequest.signIn(username: "john", password: "doe") { _ in }
-        XCTAssert(webRequest.lastURL == "http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password")
-        XCTAssert(webRequest.lastMethod == "POST")
-    }
-    
-    func test_sucessful_response() {
-        let encoder = JSONEncoder()
-        let data = try! encoder.encode(SignInResponse(accessToken: "1234"))
-        
-        webRequest.dataResponseDic = ["http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password" : data]
-        signInRequest.signIn(username: "john", password: "doe") { (result) in
-            XCTAssert(result == .success(SignInResponse(accessToken: "1234")))
-        }
+    func test_index() {
+        gameRequest.index(accessToken: "VALID_ACCESS_TOKEN") { _ in }
+        XCTAssert(webRequest.lastURL == "http://localhost:3000/api/v1/games")
+        XCTAssert(webRequest.lastMethod == "GET")
+        XCTAssert(webRequest.lastHeaders != nil)
     }
 
-    func test_not_found_response() {
-        let encoder = JSONEncoder()
-        let data = try! encoder.encode(["status_code": 401])
+    func test_sucessful_index_response() {
+        let string = "{\"games\": [{\"id\":1234,\"other_data\":\"something else\"},{\"id\":5678,\"other_data\":\"something else\"}]}"
+        let data = string.data(using: .utf8)!
+
+        let callback_expectation = expectation(description: "GameRequest#index evalutes callback")
+
+        webRequest.dataResponseDic = ["http://localhost:3000/api/v1/games" : data]
+        gameRequest.index(accessToken: "VALID_ACCESS_TOKEN") { (result) in
+            XCTAssert(result == .success([GameResponse(id: 1234), GameResponse(id: 5678)]))
+            callback_expectation.fulfill()
+        }
         
-        webRequest.dataResponseDic = ["http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password" : data]
-        
-        signInRequest.signIn(username: "john", password: "doe") { (result) in
-            XCTAssert(result == .failure(SignInRequestError.notFound))
+        waitForExpectations(timeout: 1) { error in
+          if let error = error {
+            XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+          }
         }
     }
     
-    func test_unexpected_response() {
-        let encoder = JSONEncoder()
-        let data = try! encoder.encode(["status_code": 301])
+    func test_index_failed_response() {
+        webRequest.errorResponseDic = ["http://localhost:3000/api/v1/games" : NSError()]
         
-        webRequest.dataResponseDic = ["http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password" : data]
-        signInRequest.signIn(username: "john", password: "doe") { (result) in
-            XCTAssert(result == .failure(SignInRequestError.unexpectedResponse))
-        }
-    }
-    
-    func test_error_response() {
-        webRequest.errorResponseDic = ["http://localhost:3000/oauth/token?username=john&password=doe&grant_type=password" : NSError()]
-        
-        signInRequest.signIn(username: "john", password: "doe") { (result) in
-            XCTAssert(result == .failure(SignInRequestError.requestFailed))
+        gameRequest.index(accessToken: "VALID_ACCESS_TOKEN") { (result) in
+            XCTAssert(result == .failure(GameRequestError.requestFailed))
         }
     }
 }
