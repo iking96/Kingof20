@@ -16,7 +16,7 @@ class MockWebRequest: WebRequest {
     var nextDataTask = MockURLSessionDataTask()
     private (set) var lastURL: String?
     private (set) var lastMethod: String?
-    private (set) var lastHeaders: [(value: String, key: String)]?
+    private (set) var lastHeaders: [(key: String, value: String)]?
     private (set) var lastBody: Data?
     var dataResponseDic: Dictionary<String, Data>?
     var errorResponseDic: Dictionary<String, Error>?
